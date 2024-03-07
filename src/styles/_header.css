@@ -3,7 +3,6 @@
     header {
         align-items: center;
         display: flex;
-        padding-bottom: 4rem;
 
         & > div {
             flex-direction: column;

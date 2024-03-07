@@ -2,8 +2,8 @@
     --font-size: 1rem;
     --ratio: 1.33;
 
-    /*--header-fonts: ui-serif,Palatino,"Palatino Linotype","Times New Roman",serif;*/
-    --header-fonts: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    --header-fonts: ui-serif,Palatino,"Palatino Linotype","Times New Roman",serif;
+/*    --header-fonts: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;*/
     --header-font-size-4: calc(var(--font-size) * var(--ratio));
     --header-font-size-3: calc(var(--header-font-size-4) * var(--ratio));
     --header-font-size-2: calc(var(--header-font-size-3) * var(--ratio));

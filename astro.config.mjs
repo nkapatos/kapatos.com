@@ -11,5 +11,8 @@ export default defineConfig({
       footnoteLabelTagName: "h4"
     }
   },
-  integrations: [sitemap()]
+  integrations: [sitemap()],
+  devToolbar: {
+    enabled: false
+  }
 });
