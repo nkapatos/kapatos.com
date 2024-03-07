@@ -1,0 +1,8 @@
+:root {
+    color-scheme: dark;
+    --highlight: #00ffbb;
+    --focus: #0096bfab;
+    --theme-background: hsl(200 25% 15%);
+    --theme-text-color: hsl(0 0% 90%);
+    --theme-links: hsl(317.6, 100%, 70%);
+}

@@ -1,0 +1,21 @@
+---
+const url= new URL(Astro.request.url);
+import {SITE_ROUTING} from "../site.config";
+---
+<nav>
+  {
+    SITE_ROUTING.map(route => (
+            <a
+                    data-astro-prefetch
+                    href={route.path}
+                    title={route.title}
+                    rel="noopener noreferrer"
+                    target="_self"
+                    aria-label={route.title}
+                    aria-current={url.pathname === route.path ? 'page' : false}
+            >
+              {route.title}
+            </a>
+    ))
+  }
+</nav>

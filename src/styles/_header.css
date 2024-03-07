@@ -1,0 +1,39 @@
+@layer global {
+
+    header {
+        align-items: center;
+        display: flex;
+        padding-bottom: 4rem;
+
+        & > div {
+            flex-direction: column;
+        }
+    }
+
+    nav {
+        background-color: var(--theme-background);
+
+        align-items: center;
+        display: flex;
+
+        a {
+            color: var(--theme-links);
+            border-right: 1px dotted ;
+            padding: 0 1rem;
+            text-decoration: 0 none;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+                border-right: 0 none;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

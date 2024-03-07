@@ -1,0 +1,100 @@
+body {
+    font-size: var(--font-size);
+    line-height: 1.5;
+    font-family: var(--text-fonts);
+    font-weight: 100;
+    text-rendering: optimizeLegibility;
+}
+
+p,
+li,
+h1,
+h2,
+h3,
+h4 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    margin-top: 0;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: var(--header-fonts);
+    line-height: calc(2px + 2ex + 2px);
+    font-weight: 400;
+    margin: 2em 0 0.65em;
+}
+
+h1 {
+    --fs: var(--header-font-size-1);
+    --font-diff: 0.33;
+    font-size: var(--fs);
+}
+h2 {
+    --fs: var(--header-font-size-2);
+    --font-diff: 0.33;
+    font-size: var(--fs);
+}
+h3 {
+    --fs: var(--header-font-size-3);
+    --font-diff: 0.4;
+    font-size: var(--fs);
+}
+h4 {
+    --fs: var(--header-font-size-4);
+    --font-diff: 0.2;
+    font-size: var(--fs);
+}
+
+small {font-size: var(--text-font-small);}
+
+/* REVIEW */
+q::before {
+    content: none;
+}
+
+q::after {
+    content: none;
+}
+
+blockquote,
+q {
+    border-left: 4px solid var(--focus);
+    margin: 1.5em 0;
+    padding: 0 1em;
+}
+
+blockquote > :first-child {
+    margin-top: 0;
+}
+
+blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+blockquote > footer {
+    border: 0;
+}
+
+mark {
+    background-color: var(--highlight);
+    border-radius: 2px;
+    padding: 0 2px 0 2px;
+    color: #000;
+}
+
+a > code,
+a > strong {
+    color: inherit;
+}
+
+@supports (font-size: 1cqi) {
+    :is(h1,h2,h3,h4) {
+        --font-min: var(--fs) - var(--fs) * var(--font-diff, 0.4);
+        font-size: clamp(
+                max(var(--font-size), var(--font-min)),
+                var(--font-min) + 1cqi,
+                var(--fs)
+        );
+    }
+}
