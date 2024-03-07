@@ -1,0 +1,22 @@
+---
+import "./../styles/global.css";
+import HTMLHeadComponent from "@/components/html-head.component.astro";
+import BaseHeaderComponent from "@/components/base-header.component.astro";
+import BaseFooterComponent from "@/components/base-footer.component.astro";
+import MobileNav from "@/components/mobile-nav.component.astro"
+import SiteSearch from "@/components/site-search.component.astro"
+import ThemeToggle from "@/components/theme-toggle.component.astro"
+
+const {title} = Astro.props;
+---
+<html lang="en">
+<HTMLHeadComponent {title}></HTMLHeadComponent>
+<body>
+<BaseHeaderComponent></BaseHeaderComponent>
+<SiteSearch></SiteSearch>
+<ThemeToggle></ThemeToggle>
+<MobileNav></MobileNav>
+<slot></slot>
+<BaseFooterComponent></BaseFooterComponent>
+</body>
+</html>

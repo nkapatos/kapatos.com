@@ -1,0 +1,47 @@
+@import "_global.vars.css";
+@import "_modern-normalize.css";
+
+@import "_typography.css";
+@import "_header.css";
+@import "_footnotes-citation.css";
+
+@import "_light-theme.vars.css";
+@import "_dark-theme.vars.css" (prefers-color-scheme: dark);
+
+
+@layer global {
+    html {
+        background: var(--theme-background);
+        scroll-behavior: smooth;
+    }
+
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        color: var(--theme-text-color);
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        flex-flow: column;
+        place-content: flex-start;
+        align-items: stretch;
+        margin: 0;
+
+        > main, > header, > footer  {
+            margin-inline: auto;
+            max-inline-size: 98ch;
+            inline-size: 92vw;
+            writing-mode: horizontal-tb;
+        }
+
+        > main {
+            flex-grow: 1;
+        }
+    }
+
+    .sr-only { display: none;}
+}
