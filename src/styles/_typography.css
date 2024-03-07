@@ -6,6 +6,10 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+a {
+    color: var(--theme-links);
+}
+
 p,
 li,
 h1,

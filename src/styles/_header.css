@@ -16,7 +16,6 @@
         display: flex;
 
         a {
-            color: var(--theme-links);
             border-right: 1px dotted ;
             padding: 0 1rem;
             text-decoration: 0 none;

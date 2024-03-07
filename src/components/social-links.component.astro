@@ -1,0 +1,63 @@
+---
+import {Icon} from "astro-icon/components";
+
+const SOCIAL_LINKS: {
+  name: string;
+  link: string;
+  icon: string;
+}[] = [{
+  name: "Github",
+  link: "https://github.com/nkapatos",
+  icon: "mdi:github",
+}, {
+  name: "LinkedIn",
+  link: "https://linkedin.com/in/nkapatos",
+  icon: "mdi:linkedin",
+}, {
+  name: "email",
+  link: "mailto: nikos@kapatos.com",
+  icon: "mdi:email",
+}]
+---
+
+<div>
+    <ul>
+      {
+          SOCIAL_LINKS.map(social => (
+             <li>
+                 <a
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                 >
+                     <Icon aria-hidden="true" tabindex="-1" name={social.icon} />
+                     <span class="sr-only">{social.name}</span>
+                 </a>
+             </li>
+          ))
+      }
+    </ul>
+</div>
+
+<style>
+    ul {
+        padding: 0;
+        display: flex;
+        column-gap: 1rem;
+        align-items: center;
+        list-style: none;
+    }
+
+    svg {
+        width: 1.6rem;
+        height: auto;
+    }
+
+    a svg {
+        color: var(--theme-text-color);
+    }
+
+    a:hover svg {
+        color: var(--theme-links);
+    }
+</style>

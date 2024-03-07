@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
-
 import sitemap from "@astrojs/sitemap";
+
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
       footnoteLabelTagName: "h4"
     }
   },
-  integrations: [sitemap()],
+  integrations: [sitemap(), icon()],
   devToolbar: {
     enabled: false
   }
