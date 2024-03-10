@@ -16,6 +16,9 @@ export const SITE_ROUTING: RoutingDataType[] = [{
   path: "/"
 }, {
   title: "About",
-  path: "/about"
+  path: "/about/"
+}, {
+  title: "Posts",
+  path: "/posts/"
 }
 ]

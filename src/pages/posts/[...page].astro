@@ -1,0 +1,29 @@
+---
+import PageLayout from "@/layouts/page.layout.astro";
+import PostsListComponent from "@/components/posts-list.component.astro";
+import TagsListComponent from "@/components/tags-list.component.astro";
+
+import type { GetStaticPaths } from "astro";
+
+import { getCollection } from 'astro:content';
+
+export const getStaticPaths = (async ({paginate}) => {
+  const allPosts = await getCollection('blog');
+  const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+  return paginate(sortedPosts, {
+    pageSize: 8
+  })
+}) satisfies GetStaticPaths;
+
+const {page} = Astro.props;
+---
+
+<PageLayout title="Blog Posts">
+  <section>
+    <PostsListComponent {page} />
+  </section>
+  <aside>
+    <TagsListComponent/>
+  </aside>
+</PageLayout>

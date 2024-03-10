@@ -7,6 +7,7 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://kapatos.com",
   prefetch: true,
+  trailingSlash: "always",
   markdown: {
     remarkRehype: {
       footnoteLabelTagName: "h4"

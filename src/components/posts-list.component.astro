@@ -1,0 +1,56 @@
+---
+import type { Code } from "astro:components";
+import type {CollectionEntry} from "astro:content";
+import type { Page } from "astro";
+
+interface Props {
+  page: Page<CollectionEntry<'blog'>>
+}
+
+const {page}= Astro.props;
+const posts = page.data;
+
+const sortedPosts = posts.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+const dateFormat = new Intl.DateTimeFormat("en-GB")
+---
+<h1>Posts</h1>
+<ul>
+{
+    sortedPosts.map(
+        (post) => (
+            <li>
+                 <h4>
+                    <a data-astro-prefetch href={`/posts/${post.slug}/`}>
+                        {post.data.title}
+                    </a>
+                </h4>
+                <sub><time datetime={
+                    new Date(post.data.date).toISOString()
+                }>
+                    {dateFormat.format(new Date(post.data.date))}
+                </time> - {post.data.category}
+            </sub>
+                <q>{post.data.description}</q>
+                
+               
+            </li>
+        )
+    )
+}
+</ul>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        border-bottom: 1px dashed #666;
+        &:last-child {
+            border-bottom: 0 none;
+        }
+    }
+    q {
+        display: block;
+    }
+</style>
