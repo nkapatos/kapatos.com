@@ -3,20 +3,26 @@ import PageLayout from "@/layouts/page.layout.astro";
 import PostsListComponent from "@/components/posts-list.component.astro";
 import TagsListComponent from "@/components/tags-list.component.astro";
 
-import type { GetStaticPaths } from "astro";
-
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from 'astro:content';
 
 export const getStaticPaths = (async ({paginate}) => {
   const allPosts = await getCollection('blog');
+  const tags = new Set(allPosts.flatMap(post => post.data.tags));
   const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
   return paginate(sortedPosts, {
-    pageSize: 8
+    pageSize: 8,
+    props: {tags: Array.from(tags)},
   })
 }) satisfies GetStaticPaths;
 
-const {page} = Astro.props;
+interface Props {
+	page: Page<CollectionEntry<"blog">>;
+	tags: string[];
+}
+const { page, tags} = Astro.props;
 ---
 
 <PageLayout title="Blog Posts">
@@ -24,6 +30,6 @@ const {page} = Astro.props;
     <PostsListComponent {page} />
   </section>
   <aside>
-    <TagsListComponent/>
+    <TagsListComponent {tags} />
   </aside>
 </PageLayout>

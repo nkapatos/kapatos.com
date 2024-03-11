@@ -1,1 +1,20 @@
-tags here
+---
+interface Props {
+	tags: string[];
+}
+
+const {tags} = Astro.props;
+---
+
+<ul>
+    {tags.map(tag => (
+        <li>
+            <a
+                href={`/tags/${tag}`}
+                aria-label="View more posts with this tag"
+            >
+                {tag}
+            </a>
+        </li>
+    ))}
+</ul>
