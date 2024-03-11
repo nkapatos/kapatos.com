@@ -3,11 +3,17 @@ body {
     line-height: 1.7;
     font-family: var(--text-fonts);
     font-weight: 200;
+    letter-spacing: 0.12ch;
     text-rendering: optimizeLegibility;
 }
 
 a {
     color: var(--theme-links);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--theme-links);
+    }
 }
 
 p,
@@ -26,7 +32,7 @@ h1,h2,h3,h4,h5,h6 {
     font-family: var(--header-fonts);
     line-height: calc(2px + 2ex + 2px);
     font-weight: 400;
-    margin: 2em 0 0.65em;
+    margin: 2em 0 0.45em;
     line-height: 1.2;
 }
 
