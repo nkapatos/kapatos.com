@@ -2,7 +2,6 @@ import { defineConfig } from 'astro/config';
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://kapatos.com",
@@ -10,7 +9,7 @@ export default defineConfig({
   trailingSlash: "always",
   markdown: {
     remarkRehype: {
-      footnoteLabelTagName: "h4"
+      footnoteLabelTagName: "h4",
     }
   },
   integrations: [sitemap(), icon()],

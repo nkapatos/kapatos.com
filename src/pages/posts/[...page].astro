@@ -1,5 +1,5 @@
 ---
-import PageLayout from "@/layouts/page.layout.astro";
+import BlogLayout from "@/layouts/blog.layout.astro";
 import PostsListComponent from "@/components/posts-list.component.astro";
 import TagsListComponent from "@/components/tags-list.component.astro";
 
@@ -25,11 +25,11 @@ interface Props {
 const { page, tags} = Astro.props;
 ---
 
-<PageLayout title="Blog Posts">
+<BlogLayout title="Blog Posts">
   <section>
     <PostsListComponent {page} />
   </section>
   <aside>
     <TagsListComponent {tags} />
   </aside>
-</PageLayout>
+</BlogLayout>

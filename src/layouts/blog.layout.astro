@@ -1,9 +1,17 @@
 ---
 import BaseLayout from "@/layouts/base.layout.astro"
-const {post} = Astro.props;
+const title = "Home"
 ---
-<BaseLayout title={post.data.title}>
+<BaseLayout {title}>
 <main>
     <slot></slot>
 </main>
 </BaseLayout>
+
+<style>
+    main {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        column-gap: 4rem;
+    }
+</style>
