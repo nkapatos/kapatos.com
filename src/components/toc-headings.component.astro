@@ -1,4 +1,10 @@
 ---
+import type { TocItem } from "./toc.component.astro";
+
+interface Props {
+	heading: TocItem;
+}
+
 const { heading } = Astro.props;
 ---
 
