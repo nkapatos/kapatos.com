@@ -10,7 +10,7 @@ const {tags} = Astro.props;
     {tags.map(tag => (
         <li>
             <a
-                href={`/tags/${tag}`}
+                href={`/tags/${tag}/`}
                 aria-label="View more posts with this tag"
             >
                 {tag}
