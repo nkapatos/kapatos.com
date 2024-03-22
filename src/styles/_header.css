@@ -4,33 +4,34 @@
         align-items: center;
         display: flex;
 
-        & > div {
+        &>div {
             flex-direction: column;
         }
-    }
 
-    nav {
-        background-color: var(--theme-background);
 
-        align-items: center;
-        display: flex;
+        nav {
+            background-color: var(--theme-background);
 
-        a {
-            border-right: 1px dotted ;
-            padding: 0 1rem;
-            text-decoration: 0 none;
+            align-items: center;
+            display: flex;
 
-            &:first-child {
-                padding-left: 0;
-            }
+            a {
+                border-right: 1px dotted;
+                padding: 0 1rem;
+                text-decoration: 0 none;
 
-            &:last-child {
-                padding-right: 0;
-                border-right: 0 none;
-            }
+                &:first-child {
+                    padding-left: 0;
+                }
 
-            &:hover {
-                text-decoration: underline;
+                &:last-child {
+                    padding-right: 0;
+                    border-right: 0 none;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }
