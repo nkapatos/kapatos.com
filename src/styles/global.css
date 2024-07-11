@@ -24,11 +24,7 @@
     }
 
     body {
-        height: 100vh;
-        display: flex;
-        flex-flow: column;
-        place-content: flex-start;
-        align-items: stretch;
+        min-height: 100vh;
         margin: 0;
 
         > main, > header, > footer  {
@@ -44,4 +40,21 @@
     }
 
     .sr-only { display: none;}
+}
+
+@layer global {
+
+aside {
+    display: none;
+}
+aside nav {
+    position: sticky;
+    top: 5rem;
+}
+
+@media (min-width: 1024px) {
+    aside {
+        display: block;
+    }
+}
 }

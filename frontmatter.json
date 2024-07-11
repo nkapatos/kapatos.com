@@ -1,0 +1,96 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "blog",
+      "previewPath": "'blog'",
+      "pageBundle": false,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "name": "description",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "tags",
+          "required": true
+        },
+        {
+          "name": "author",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "name": "authorImage",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "name": "authorTwitter",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "name": "date",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "name": "image",
+          "type": "image"
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "keywords",
+          "name": "keywords",
+          "type": "choice",
+          "choices": [
+            "ki"
+          ]
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "astro",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Blog Posts",
+      "path": "[[workspace]]/src/content/blog",
+      "contentTypes": [
+        "blog"
+      ]
+    },
+    {
+      "path": "[[workspace]]/src/pages",
+      "title": "Static Pages"
+    },
+    {
+      "title": "Digital Garden",
+      "path": "[[workspace]]/src/content/notes"
+    }
+  ],
+  "frontMatter.content.publicFolder": {
+    "path": "src/assets",
+    "relative": true
+  },
+  "frontMatter.git.enabled": true,
+  "frontMatter.website.host": "https://kapatos.com",
+  "frontMatter.framework.startCommand": "pnpm dev"
+}

@@ -1,0 +1,40 @@
+---
+import type { MarkdownHeading } from "astro";
+import ToCHeadingsComponent from "@/components/toc-headings.component.astro";
+
+export interface TocItem extends MarkdownHeading {
+	subheadings: Array<TocItem>;
+}
+
+interface Props {
+	headings: Array<MarkdownHeading>;
+}
+
+const { headings } = Astro.props;
+
+function buildToc(headings: ReadonlyArray<MarkdownHeading>) {
+	const toc: Array<TocItem>= [];
+	const parentHeadings = new Map<number, TocItem>();
+	headings.forEach((h) => {
+		const heading = { ...h, subheadings: [] as Array<TocItem>};
+		parentHeadings.set(heading.depth, heading);
+		if (heading.depth === 1) {
+			toc.push(heading);
+		} else {
+			const parentHeading = parentHeadings.get(heading.depth - 1);
+			if (parentHeading) {
+				parentHeading.subheadings.push(heading);
+			}
+		}
+	});
+	return toc;
+}
+
+const toc = buildToc(headings);
+---
+
+<nav class="toc">
+	<ul>
+		{toc.map((heading) => <ToCHeadingsComponent {heading} />)}
+	</ul>
+</nav>
