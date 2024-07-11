@@ -9,10 +9,17 @@ const blogCollection = defineCollection({
     tags: z.array(z.string()),
     author: z.string(),
     authorImage: z.string().optional(),
-    authorTwitter: z.string(),
     date: z.string(),
     image: z.string().optional(),
     category: z.string(),
+  }),
+});
+
+const notesCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    tags: z.array(z.string()),
   }),
 });
 
