@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+import { getCollection } from "astro:content"
+
+import NotesLayout from "@/layouts/notes.layout.astro";
+import EntriesListComponent from "@/components/entries.component.astro";
+import { SITE_COLLECTIONS } from "@/config";
+
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+    const allEntries = await getCollection(SITE_COLLECTIONS.NOTES, (note) => !note.data.draft);
+    const sortedEntries = allEntries.sort(
+        (a, b) => new Date(b.data.uDate).getTime() - new Date(a.data.uDate).getTime(),
+    );
+    const tags = new Set(allEntries.flatMap((entry) => entry.data.tags));
+
+    return Array.from(tags).flatMap((tag) => {
+        const filterEntries = sortedEntries.filter((entry) => entry.data.tags.includes(tag));
+        return paginate(filterEntries.map(entry => ({
+            ...entry,
+            isDraft: false
+        })), {
+            pageSize: 10,
+            params: { tag },
+        });
+    });
+};
+
+interface Props {
+    page: Page<CollectionEntry<SITE_COLLECTIONS.NOTES> & { isDraft: boolean }>;
+}
+
+const { page } = Astro.props;
+const { tag } = Astro.params;
+
+const meta = {
+	description: `View all entries with the tag - ${tag}`,
+	title: `Tag: ${tag}`,
+};
+
+const paginationProps = {
+	...(page.url.prev && {
+		prevUrl: {
+			text: `← Previous Tags`,
+			url: page.url.prev,
+		},
+	}),
+	...(page.url.next && {
+		nextUrl: {
+			text: `Next Tags →`,
+			url: page.url.next,
+		},
+	}),
+};
+---
+
+<NotesLayout title="Notes & Thoughts">
+    <section>
+      <EntriesListComponent {page} />
+    </section>
+  </NotesLayout>

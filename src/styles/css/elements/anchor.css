@@ -1,0 +1,21 @@
+@layer theme.colors {
+    :root {
+        --anchor-color: color-mix(in oklch, var(--theme-text-color), var(--yellow-variation) 90%);
+        --anchor-color-hover: color-mix(in oklch, var(--anchor-color), var(--green-variation) 90%);
+    }
+}
+
+@layer elements {
+    a {
+        color: var(--anchor-color);
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--anchor-color-hover);
+        }
+    }
+}

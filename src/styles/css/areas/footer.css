@@ -1,0 +1,11 @@
+/* @layer theme.colors { */
+/*     :root { */
+/*         --footer-background: var(--surface-1); */
+/*     } */
+/* } */
+/**/
+/* @layer areas { */
+/*     footer { */
+/*         background-color: var(--footer-background); */
+/*     } */
+/* } */

@@ -1,0 +1,15 @@
+---
+import PageLayout from "@/layouts/page.layout.astro";
+
+const url = Astro.request.url;
+const mail_with_subject = `mailto: nikos@kapatos.com?subject=${encodeURI("Hey, I got a 404 when tried to visit " + url)}`
+---
+
+<PageLayout title="404 in the wild!">
+    <h1>Somehow.... 404 returned!</h1>
+    <h4>
+        In other words, 'It works on my machine' ;)
+    </h4>
+    <p>No worries though, a lot more content is yet to be discovered, so please use the navigation to find your way or
+        <a href={mail_with_subject}>drop me a message</a> if you think I should have a look at it</p>
+</PageLayout>

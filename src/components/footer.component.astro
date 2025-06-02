@@ -1,0 +1,18 @@
+---
+import {SITE_CONFIG} from "@/config";
+
+const YEAR: number = new Date().getFullYear();
+---
+<footer>
+    &copy; {SITE_CONFIG.author.name} {YEAR}
+</footer>
+
+<style>
+    footer {
+        background-color: var(--theme-background);
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        min-height: 6rem;
+    }
+</style>

@@ -1,0 +1,9 @@
+@import "./css/reset.css";
+@import "./css/layout.css";
+@import "./css/theme.css";
+@import "./css/typography.css";
+
+/* Styles for the grid areas in the body */
+@import "./css/areas/header.css";
+@import "./css/areas/main.css";
+@import "./css/areas/footer.css";

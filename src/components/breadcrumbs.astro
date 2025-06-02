@@ -1,0 +1,119 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface IBreadcrumbItem {
+  href?: string;
+  label: string;
+  icon?: string;
+}
+
+interface Props {
+  items: IBreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+console.log("========== Breadcrumbs ==========");
+console.log(items);
+console.log("========== Breadcrumbs ==========\n");
+
+const breadcrumbEllipsis = "...";
+---
+
+<nav aria-label="breadcrumb" data-slot="breadcrumb">
+  <ol>
+    <li>
+      <a href="/">
+        <Icon name="mdi:home" width="16" height="16" />
+      </a>
+    </li>
+
+    {
+      items.map((item, index) => (
+        <>
+          {/* Breadcrumb Separator */}
+          <li data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" >
+            <Icon name="mdi:chevron-right" width="16" height="16" />
+          </li>
+
+          {/* Breadcrumb Item */}
+          <li data-slot="breadcrumb-item" role="link" class="breadcrumb-item">
+            {index === items.length - 1 ? (
+              // Breadcrumb Page
+              <span data-slot="breadcrumb-page" role="link" aria-disabled="true" aria-current="page">
+                <span class="breadcrumb-content">
+                  {item.icon && <Icon name={item.icon} class="breadcrumb-icon" />}
+                  <span>{item.label}</span>
+                </span>
+              </span>
+            ) : (
+              // Breadcrumb Link
+              <a
+                data-slot="breadcrumb-link"
+                href={item.href}
+                aria-current={index === items.length - 1 ? "page" : undefined}
+              >
+                <span class="breadcrumb-content">
+                  {item.icon && <Icon name={item.icon} class="breadcrumb-icon" />}
+                  <span>{item.label}</span>
+                </span>
+              </a>
+            )}
+          </li>
+        </>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--text-font-small);
+    color: color-mix(in oklch, var(--base-fg), var(--charcoal-variation) 80%);
+    overflow-wrap: break-word;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    li > span {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--base-fg);
+      font-weight: normal;
+    }
+  }
+
+  .breadcrumb-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    ol {
+      gap: 0.625rem;
+    }
+  }
+</style>

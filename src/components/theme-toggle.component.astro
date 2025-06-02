@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button id="theme-toggle">
+    <Icon name="mdi:theme-light-dark" />
+</button>
+
+<style>
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--surface-1);
+        color: var(--theme-text-color);
+        border: 1px solid var(--surface-2);
+        transition: background-color 0.3s ease;
+    }
+</style>
+
+<script>
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+
+        // Get initial theme
+        const getTheme = () => {
+            const stored = localStorage.getItem('theme');
+            if (stored === 'dark' || stored === 'light') return stored;
+            return null; // Let the system preference handle it
+        };
+
+        // Set initial theme
+        const setTheme = (theme: string | null) => {
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', theme || '');
+        };
+
+        // Initialize theme
+        setTheme(getTheme());
+
+        // Handle toggle click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = getTheme();
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    }
+
+    // Initialize on load
+    initThemeToggle();
+
+    // Re-initialize after Astro page transitions
+    document.addEventListener('astro:after-swap', initThemeToggle);
+</script>

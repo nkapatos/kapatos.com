@@ -1,0 +1,15 @@
+@layer elements {
+    :root {
+        --textarea-background: var(--base-bg);  
+        --textarea-color: var(--base-fg);
+    }
+
+    textarea {
+        background-color: var(--textarea-background);
+        color: var(--textarea-color);
+        padding: 1ch;
+        border: none;
+        outline: none;
+        resize: none;
+    }
+}

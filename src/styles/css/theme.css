@@ -1,0 +1,57 @@
+:root {
+    --core-light: oklch(98.5% 0 0);
+    --core-dark: oklch(0.18 0 0);
+
+    --charcoal-variation: oklch(32% 0.04 230);
+    --green-variation: oklch(63% 0.15 155);
+    --yellow-variation: oklch(85% 0.15 85);
+    --orange-variation: oklch(80% 0.12 45);
+    --red-variation: oklch(60% 0.20 25);
+
+    --surface-1: color-mix(in oklch, var(--base-fg), var(--base-bg) 87%);
+    --surface-2: color-mix(in oklch, var(--base-fg), var(--base-bg) 80%);
+
+    --content-max-width: 1200px;
+}
+
+/* Default light theme */
+:root {
+    color-scheme: light;
+    --base-bg: var(--core-light);
+    --base-fg: var(--core-dark);
+    --theme-background: var(--base-bg);
+    --theme-text-color: var(--base-fg);
+}
+
+/* System dark mode preference */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+        --base-bg: var(--core-dark);
+        --base-fg: var(--core-light);
+        --theme-background: var(--base-bg);
+        --theme-text-color: var(--base-fg);
+    }
+}
+
+/* Manual theme override */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --base-bg: var(--core-dark);
+    --base-fg: var(--core-light);
+    --theme-background: var(--base-bg);
+    --theme-text-color: var(--base-fg);
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --base-bg: var(--core-light);
+    --base-fg: var(--core-dark);
+    --theme-background: var(--base-bg);
+    --theme-text-color: var(--base-fg);
+}
+
+body {
+    background-color: var(--theme-background);
+    color: var(--theme-text-color);
+}
