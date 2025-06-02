@@ -1,0 +1,54 @@
+---
+import type {CollectionEntry} from "astro:content";
+import type { Page } from "astro";
+import { SITE_COLLECTIONS, SITE_ROUTING } from "@/config";
+
+interface Props {
+  page: Page<CollectionEntry<SITE_COLLECTIONS.NOTES> & { isDraft: boolean }>
+}
+
+const {page}= Astro.props;
+const entries = page.data;
+
+const sortedEntries = entries.sort((a, b) => new Date(b.data.uDate).valueOf() - new Date(a.data.uDate).valueOf());
+const dateFormat = new Intl.DateTimeFormat("en-GB")
+---
+<h1>Notes & Thoughts</h1>
+<ul>
+{
+    sortedEntries.map(
+        (entry) => (
+            <li class:list={[{ 'draft-entry': entry.isDraft }]}>
+                 <h4>
+                    <a data-astro-prefetch href={`${SITE_ROUTING.notes.path}/${entry.id}`}>
+                        {entry.isDraft ? `[Draft] ${entry.data.title}` : entry.data.title}
+                    </a>
+                </h4>
+                <sub><time datetime={
+                    new Date(entry.data.uDate).toISOString()
+                }>
+                    {dateFormat.format(new Date(entry.data.uDate))}
+                </time> - data category here
+            </sub>
+                <q>{entry.data.description}</q>
+            </li>
+        )
+    )
+}
+</ul>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        border-bottom: 1px dashed #666;
+        &:last-child {
+            border-bottom: 0 none;
+        }
+    }
+    q {
+        display: block;
+    }
+</style>

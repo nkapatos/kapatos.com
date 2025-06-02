@@ -1,0 +1,19 @@
+---
+import "./../styles/global.css";
+import HeadComponent from "@/components/head.component.astro";
+import HeaderComponent from "@/components/header.component.astro";
+import FooterComponent from "@/components/footer.component.astro";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+    <HeadComponent title={title} />
+    <body>
+        <div>
+            <HeaderComponent />
+            <slot />
+            <FooterComponent />
+        </div>
+    </body>
+</html>

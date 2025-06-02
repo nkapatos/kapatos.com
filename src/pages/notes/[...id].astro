@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
+
+import NotesLayout from "@/layouts/notes.layout.astro";
+import TocComponent from "@/components/toc.component.astro";
+import { render } from "astro:content";
+import Breadcrumbs from "@/components/breadcrumbs.astro";
+
+import { getParentEntry, getSubentriesForParent, isSubentry } from "@/utils/data-utils";
+
+import {SITE_COLLECTIONS, SITE_ROUTING} from "@/config";
+
+export const getStaticPaths = (async () => {
+  const entries = await getCollection(SITE_COLLECTIONS.NOTES, ({ data }) => {
+    return import.meta.env.PROD ? data.draft === false : true;
+  });
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: {
+      entry,
+      isDraft: !import.meta.env.PROD && entry.data.draft,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entry, isDraft } = Astro.props;
+const currentEntryId = entry.id;
+const { Content, headings } = await render(entry);
+
+const isCurrentSubentry = isSubentry(entry.id);
+const parentEntry = await getParentEntry(entry.id);
+const subentries = await getSubentriesForParent(entry.id);
+---
+
+<NotesLayout entry={entry}>
+  <Breadcrumbs
+        items={[
+          { href: SITE_ROUTING.notes.path, label: SITE_ROUTING.notes.title, icon: 'mdi:notebook-multiple' },
+          ...(isCurrentSubentry && parentEntry
+            ? [
+                {
+                  href: `${SITE_ROUTING.notes.path}/${parentEntry.id}`,
+                  label: parentEntry.data.title,
+                  icon: 'mdi:notebook',
+                },
+                {
+                  href: `${SITE_ROUTING.notes.path}/${currentEntryId}`,
+                  label: entry.data.title,
+                  icon: 'mdi:file-text',
+                },
+              ]
+            : [
+                {
+                  href: `${SITE_ROUTING.notes.path}/${currentEntryId}`,
+                  label: entry.data.title,
+                  icon: 'mdi:bookmark',
+                },
+              ]),
+        ]}
+      />
+  <article class:list={[{ "draft-entry": isDraft }]}>
+    <Content />
+  </article>
+  <!-- <aside>
+		<TocComponent {headings}/>
+	</aside> -->
+</NotesLayout>

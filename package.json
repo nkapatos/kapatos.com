@@ -1,0 +1,27 @@
+{
+  "name": "kapatos.com",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.4.0",
+    "@expressive-code/plugin-collapsible-sections": "^0.41.2",
+    "@expressive-code/plugin-line-numbers": "^0.41.2",
+    "@iconify-json/mdi": "^1.2.3",
+    "astro": "^5.8.0",
+    "astro-expressive-code": "^0.41.2",
+    "astro-icon": "^1.1.5",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

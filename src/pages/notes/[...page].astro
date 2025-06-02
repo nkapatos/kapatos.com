@@ -1,0 +1,52 @@
+---
+import NotesLayout from "@/layouts/notes.layout.astro";
+import EntriesListComponent from "@/components/entries.component.astro";
+import TagsListComponent from "@/components/tags-list.component.astro";
+import Breadcrumbs from "@/components/breadcrumbs.astro";
+
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { SITE_COLLECTIONS, SITE_ROUTING } from "@/config";
+
+// TODO: Move and merge with utils
+export const getStaticPaths = (async ({ paginate }) => {
+  const allEntries = await getCollection(SITE_COLLECTIONS.NOTES, ({data}) => {
+    return import.meta.env.PROD ? data.draft === false : true;
+  });
+  const tags = new Set(allEntries.flatMap((entry) => entry.data.tags));
+  const sortedEntries = allEntries.sort(
+    (a, b) => new Date(b.data.uDate).getTime() - new Date(a.data.uDate).getTime(),
+  );
+
+  // Add isDraft flag to each entry
+  const entriesWithDraftStatus = sortedEntries.map(entry => ({
+    ...entry,
+    isDraft: !import.meta.env.PROD && entry.data.draft
+  }));
+
+  return paginate(entriesWithDraftStatus, {
+    pageSize: 8,
+    props: { tags: Array.from(tags) },
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<CollectionEntry<SITE_COLLECTIONS.NOTES> & { isDraft: boolean }>;
+  tags: string[];
+}
+const { page, tags } = Astro.props;
+---
+
+<NotesLayout title="Notes & Thoughts">
+  <Breadcrumbs items={[
+    { label: SITE_ROUTING.notes.title, href: SITE_ROUTING.notes.path, icon: "mdi:notebook-multiple" },
+    { label: `Page ${page.currentPage}`, icon: "mdi:notebook" }
+  ]} />
+  <section>
+    <EntriesListComponent {page} />
+  </section>
+  <aside>
+    <TagsListComponent {tags} />
+  </aside>
+</NotesLayout>

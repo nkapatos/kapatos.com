@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@/layouts/base.layout.astro";
+const title = "TODO: Change me";
+---
+
+<BaseLayout {title}>
+    <main>
+        <slot />
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        display: grid;
+        column-gap: 4rem;
+        grid-template-columns: auto;
+    }
+
+    @media (min-width: 1023px) {
+        main {
+            grid-template-columns: auto;
+        }
+    }
+</style>

@@ -1,0 +1,31 @@
+---
+interface Props {
+	tags: string[];
+}
+
+const {tags} = Astro.props;
+console.log("========== Tags-list-component ==========");
+console.log(Astro.props);
+console.log("========== Tags-list-component ==========\n");
+---
+<h1>#</h1>
+<ul>
+    {tags.map(tag => (
+        <li>
+            <a
+                href={`/tags/${tag}`}
+                aria-label="More with this tag"
+            >
+                {tag}
+            </a>
+        </li>
+    ))}
+</ul>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+</style>

@@ -1,0 +1,28 @@
+@import "./reset.css";
+@import "./layout.css";
+@import "./theme.css";
+@import "./typography.css";
+/*
+    Areas. These are the top level areas that make up the layout.
+    They are used to define the grid areas and define the styles for each area.
+    
+    IMPORTANT: The order of the imports matters. Although the layers define some basic rules,
+    for how these aread will be displayed, there is always the option the actual area to redifine
+    it's styles, instead of resorting to !important rules.
+
+*/
+@import "./areas/header.css";
+@import "./areas/main.css";
+@import "./areas/footer.css";
+
+/* Elements. These are the core elements that represent the HTML elements 1:1.*/
+@import "./elements/anchor.css";
+@import "./elements/button.css";
+@import "./elements/textarea.css";
+@import "./elements/icon.css";
+
+/* Components. The components are the higher level components that are used to build the complex components and rely on the elements.
+in the future will be used to define the web components.
+*/
+@import "./components/menu/menu-component.css";
+@import "./components/chat/chat-component.css";

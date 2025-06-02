@@ -1,0 +1,30 @@
+@layer layout {
+    body > div {
+        height: 100vh;
+        width: 100vw;
+
+        display: grid;
+        grid-template-areas: 
+            "header header header"
+            "main main main"
+            "footer footer footer";
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 60px 1fr 40px;
+
+        /*
+            Based on the docs it should be .class > .child-class,
+            however it seems to work also like this?
+        */
+        > header {
+            grid-area: header;
+        }
+    
+        > main {
+            grid-area: main;
+        }
+    
+        > footer {
+            grid-area: footer;
+        }
+    }
+}

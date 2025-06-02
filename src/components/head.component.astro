@@ -1,0 +1,65 @@
+---
+import { SITE_CONFIG } from "../site.config";
+const { title } = Astro.props;
+const TITLE_SEPARATOR = "•";
+const SITE_TITLE = `${title} ${TITLE_SEPARATOR} ${SITE_CONFIG.title}`;
+const CANONICAL_URL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+        content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        name="viewport"
+    />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+
+    <title>{SITE_TITLE}</title>
+
+    <link href="/favicon.ico" rel="icon" sizes="any" />
+    <link href="/favicon-32.png" rel="icon" sizes="32x32" />
+    <link href="/favicon-192.png" rel="icon" sizes="192x192" />
+    <link
+        href="/favicon-180-precomposed.png"
+        rel="apple-touch-icon"
+        sizes="180x180"
+    />
+    <link
+        href="/favicon-152-precomposed.png"
+        rel="apple-touch-icon"
+        sizes="152x152"
+    />
+    <link
+        href="/favicon-144-precomposed.png"
+        rel="apple-touch-icon"
+        sizes="144x144"
+    />
+    <link
+        href="/favicon-120-precomposed.png"
+        rel="apple-touch-icon"
+        sizes="120x120"
+    />
+    <link
+        href="/favicon-114-precomposed.png"
+        rel="apple-touch-icon"
+        sizes="114x114"
+    />
+    <link
+        href="/favicon-72-precomposed.png"
+        rel="apple-touch-icon"
+        sizes="72x72"
+    />
+    <link href="/favicon-57.png" rel="apple-touch-icon" sizes="57x57" />
+    <link href="/manifest.webmanifest" rel="manifest" />
+
+    <link href={CANONICAL_URL} rel="canonical" />
+
+    <meta content={SITE_TITLE} name="title" />
+    <meta content={SITE_CONFIG.description} name="description" />
+    <meta content={SITE_CONFIG.author.name} name="author" />
+
+    <link href="/sitemap-index.xml" rel="sitemap" />
+
+    <meta name="generator" content={Astro.generator} />
+</head>

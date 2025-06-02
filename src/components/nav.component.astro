@@ -1,0 +1,28 @@
+---
+const url= new URL(Astro.request.url);
+import {SITE_ROUTING} from "../site.config";
+
+const enabledRoutes = () => {
+  return Object.entries(SITE_ROUTING)
+    .filter(([_, route]) => route.enabled !== false)
+    .map(([_, route]) => route);
+}
+
+---
+<nav>
+  {
+    enabledRoutes().map(route => (
+            <a
+                    data-astro-prefetch
+                    href={route.path}
+                    title={route.title}
+                    rel="noopener noreferrer"
+                    target="_self"
+                    aria-label={route.title}
+                    aria-current={url.pathname === route.path ? 'page' : false}
+            >
+              {route.title}
+            </a>
+    ))
+  }
+</nav>

@@ -1,0 +1,118 @@
+:root {
+  /* Perfect Fourth */
+  --type-ratio: 1.33;
+
+  /*  Body font size  */
+  --body-font-size: 1rem;
+
+  /* Compounded headlines sizes */
+  --font-size-4: calc(var(--body-font-size) * var(--type-ratio));
+  --font-size-3: calc(var(--font-size-4) * var(--type-ratio));
+  --font-size-2: calc(var(--font-size-3) * var(--type-ratio));
+  --font-size-1: calc(var(--font-size-2) * var(--type-ratio));
+    --header-fonts: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro, sans-serif;
+    --text-fonts: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    --code-fonts: Consolas, "Andale Mono WT", "Andale Mono", Menlo, Monaco, "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, "YaHei Consolas Hybrid", monospace, "Segoe UI Emoji", "PingFang SC", "Microsoft YaHei";
+    --text-font-small: .833rem
+}
+/* TODO:follow up with setting up the font families correctly */
+    body {
+        font-size: var(--body-font-size);
+        font-family: var(--text-fonts);
+        font-weight: 300;
+        text-rendering: optimizeLegibility
+    }
+
+    p,
+    li,
+    h1,
+    h2,
+    h3,
+    h4 {
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+        margin-top: 0;
+    }
+
+    h3,
+    h4 {
+        font-family: var(--header-fonts);
+        line-height: calc(6px + 3ex);
+        font-weight: 400;
+    --font-size-diff: 0.44
+    }
+    small {
+        font-size: var(--text-font-small)
+    }
+
+    q:before {
+        content: none
+    }
+
+    q:after {
+        content: none
+    }
+
+    blockquote,
+    q {
+        border-left: 4px solid var(--focus);
+        margin: 1.5em 0;
+        padding: 0 1em
+    }
+
+    blockquote>:first-child {
+        margin-top: 0
+    }
+
+    blockquote>:last-child {
+        margin-bottom: 0
+    }
+
+    blockquote>footer {
+        border: 0
+    }
+
+    mark {
+        background-color: var(--highlight);
+        border-radius: 2px;
+        padding: 0 2px;
+        color: #000
+    }
+
+    a>code,
+    a>strong {
+        color: inherit
+     }
+
+h1 {
+  --font-size: var(--font-size-1);
+}
+
+h2 {
+  --font-size: var(--font-size-2);
+}
+
+h3 {
+  --font-size: var(--font-size-3);
+}
+
+h4 {
+  --font-size: var(--font-size-4);
+}
+
+@supports (font-size: 1cqi) {
+  :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, .fluid-type) {
+    --_font-min: var(--font-size) - var(--font-size) * var(--font-size-diff, 0.3);
+
+    font-size: clamp(
+      max(var(--body-font-size), var(--_font-min)),
+      var(--_font-min) + 1cqi,
+      var(--font-size)
+    );
+  }
+}

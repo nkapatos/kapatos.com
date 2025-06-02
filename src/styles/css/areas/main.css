@@ -1,0 +1,29 @@
+@layer areas {
+    main {
+        display: flex;
+        flex-direction: column;
+        
+        /* > aside { */
+        /*     width: 300px; */
+        /*     overflow-y: auto; */
+        /* } */
+
+        > article {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    /* Todo: follow up to see if you can use flexbox or the grid to deal with this */
+    /* @media (min-width: 1800px) {
+        main {
+            width: 1800px;
+
+            > .content {
+                width: 1200px;
+                margin: 0 auto;
+            }
+        }
+    } */
+}

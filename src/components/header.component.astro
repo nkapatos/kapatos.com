@@ -1,0 +1,30 @@
+---
+import NavComponent from "@/components/nav.component.astro";
+import MobileNav from "@/components/mobile-nav.component.astro";
+import SiteSearch from "@/components/site-search.component.astro";
+import ThemeToggle from "@/components/theme-toggle.component.astro";
+---
+
+<header>
+    <div>
+        <h3>kapatos.com</h3>
+        <NavComponent />
+        <MobileNav />
+        <SiteSearch />
+        <ThemeToggle />
+    </div>
+</header>
+
+<style>
+    header {
+        > div {
+            width: 100%;
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+</style>
